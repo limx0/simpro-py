@@ -1,2 +1,2 @@
 
-from simpropy.api import SimPro
+from simpropy.core import SimPro

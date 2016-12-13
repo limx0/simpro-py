@@ -1,7 +1,7 @@
 
 import unittest
 import os
-from simpropy.api import SimPro
+from simpropy.core import SimPro
 from simpropy.auth import UserTokenAuth
 
 

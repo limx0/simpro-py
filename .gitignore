@@ -1,8 +1,9 @@
 
 .idea/
-.ipynb_checkpoints/
+dist/
+*/__pycache__/
 
 *.ipynb
-*.pyc
+.ipynb_checkpoints/
 
-
+MANIFEST

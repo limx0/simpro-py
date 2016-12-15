@@ -1,7 +1,7 @@
 
 class Base(object):
     def __init__(self, parent):
-        self.request = parent._request
+        self.request = parent.request
         self.company_id = parent.company_id
         self.class_name = self.__class__.__name__
 
@@ -20,19 +20,22 @@ class Base(object):
     def insert(self, parameters):
         return self.request(
             end_point='{}Insert'.format(self.class_name),
-            parameters={'CompanyID': self.company_id, '{}Details'.format(self.detail.title()): parameters}
+            parameters={'CompanyID': self.company_id, '{}Details'.format(self.name.title()): parameters}
         )
 
-    def update(self, customer_id, **kwargs):
+    def update(self, id, details):
         return self.request(
             end_point='{cls}Update'.format(cls=self.class_name),
-            parameters={'CompanyID': self.company_id, 'CustomerID': customer_id, 'CustomerDetails': kwargs}
+            parameters={
+                'CompanyID': self.company_id,
+                self.id: id,
+                '{}Details'.format(self.name.title()): details}
         )
 
 
 class Customer(Base):
     name = 'customer'
-    detail = 'customer'
+    id = 'CustomerID'
 
     def __init__(self, parent):
         super().__init__(parent)
@@ -40,7 +43,7 @@ class Customer(Base):
 
 class Job(Base):
     name = 'job'
-    detail = 'job'
+    id = 'JobNo'
 
     def __init__(self, parent):
         super().__init__(parent)
@@ -48,7 +51,7 @@ class Job(Base):
 
 class Site(Base):
     name = 'site'
-    detail = 'site'
+    id = 'SiteNo'
 
     def __init__(self, parent):
         super().__init__(parent)
@@ -56,7 +59,7 @@ class Site(Base):
 
 class Employee(Base):
     name = 'employee'
-    detail = 'employee'
+    id = 'EmployeeID'
 
     def __init__(self, parent):
         super().__init__(parent)

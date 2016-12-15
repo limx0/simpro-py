@@ -11,4 +11,4 @@ class TestSimPro(unittest.TestCase):
     sim_pro = SimPro(host, client_key, client_secret)
 
     def test_request(self):
-        self.assertTrue(self.sim_pro._request('CompanySearch'))
+        self.assertTrue(self.sim_pro.request('CompanySearch'))

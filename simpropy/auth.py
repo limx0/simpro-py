@@ -8,6 +8,15 @@ access_token_url = 'https://{}/api/oauth/access_token.php'
 authorization_base_url = 'https://{}/oauth/authorize.php'
 
 
+def authorize(auth_type, host, client_key, client_secret):
+    if auth_type == 'direct_access':
+        return DirectAccessAuth(host, client_key, client_secret)
+    elif auth_type == 'user_token':
+        return UserTokenAuth(host, client_key, client_secret),
+    else:
+        raise Exception('auth_type {} not understood. Should be [direct_access, user_token]'.format(auth_type))
+
+
 class DirectAccessAuth:
     def __init__(self, host, client_key, client_secret):
         self.host = host
